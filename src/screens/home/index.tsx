@@ -1,11 +1,24 @@
-import { Container, Text } from "./styles";
+import { Header } from "@components/Header";
+import { Container, SearchContainer, Input, SearchButton } from "./styles";
+import { Feather } from "@expo/vector-icons";
+import theme from "@theme/index";
 
-function Home() {
+export const Home = () => {
   return (
     <Container>
-      <Text> Olá Mundo !</Text>
+      <Header title={"React Prime"} />
+
+      <SearchContainer>
+        <Input
+          placeholder="Digite um filme"
+          placeholderTextColor={theme.COLORS.WHITE}
+        />
+
+        <SearchButton>
+          <Feather name="search" size={30} color={theme.COLORS.WHITE}/>
+        </SearchButton>
+
+      </SearchContainer>
     </Container>
   );
 }
-
-export default Home;

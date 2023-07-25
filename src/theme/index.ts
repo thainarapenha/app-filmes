@@ -1,8 +1,11 @@
 export default {
   COLORS: {
     WHITE: '#FFFFFF',
-    BLACK: '#000000',
-    RED: '#F75A68',
+    BLACK1: '#000000',
+    BLACK2: '#15120e',
+    GRAY: '#635f61',
+    RED: '#F72f49',
+    YELLOW: '#f39510',
   },
   FONT_FAMILY: {
     REGULAR: 'Roboto_400Regular',

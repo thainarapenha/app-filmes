@@ -1,11 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
-
-import AppRoutes from "./app.routes";
+import DrawerRoutes from "./drawerRoutes";
+import "react-native-gesture-handler";
 
 function Routes() {
   return (
     <NavigationContainer>
-      <AppRoutes />
+      <DrawerRoutes />
     </NavigationContainer>
   );
 }
