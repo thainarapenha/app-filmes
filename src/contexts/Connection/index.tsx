@@ -4,11 +4,11 @@ import IMovies from 'src/interface/IMovies';
 
 interface IMoviesContent {
   nowMovies: IMovies[];
-  popularMovies: IMovies[];
-  topMovies: IMovies[];
+  // popularMovies: IMovies[];
+  // topMovies: IMovies[];
   setNowMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
-  setPopularMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
-  setTopMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
+  // setPopularMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
+  // setTopMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   getMovies(): Promise<void>;
 }
 
@@ -18,10 +18,10 @@ type IMoviesProps = {
   children: JSX.Element;
 }
 
-export function MoviesProvider({ children }: IMoviesProps) {
+export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
   const [nowMovies, setNowMovies] = useState<IMovies[]>([]);
-  const [popularMovies, setPopularMovies] = useState<IMovies[]>([]);
-  const [topMovies, setTopMovies] = useState<IMovies[]>([]);
+  // const [popularMovies, setPopularMovies] = useState<IMovies[]>([]);
+  // const [topMovies, setTopMovies] = useState<IMovies[]>([]);
 
   useEffect(() => {
     getMovies();
@@ -29,7 +29,7 @@ export function MoviesProvider({ children }: IMoviesProps) {
 
   async function getMovies() {
     const [nowData, popularData, topData] = await Promise.all([
-      api.get<IMovies[]>('movie/now_playing',{
+      api.get('movie/now_playing',{
         params:{
           api_key: key,
           language: 'pt-BR',
@@ -37,7 +37,7 @@ export function MoviesProvider({ children }: IMoviesProps) {
         }
       }),
 
-      api.get<IMovies[]>('movie/popular',{
+      api.get('movie/popular',{
         params:{
           api_key: key,
           language: 'pt-BR',
@@ -45,7 +45,7 @@ export function MoviesProvider({ children }: IMoviesProps) {
         }
       }),
 
-      api.get<IMovies[]>('movie/top_rated',{
+      api.get('movie/top_rated',{
         params:{
           api_key: key,
           language: 'pt-BR',
@@ -54,12 +54,12 @@ export function MoviesProvider({ children }: IMoviesProps) {
       }),
     ])
 
-    console.log(nowData.data);
+    console.log('entrou no context');
   }
 
   return (
     <MoviesContext.Provider
-      value={{ nowMovies, popularMovies, topMovies, setNowMovies, setPopularMovies, setTopMovies, getMovies }}
+      value={{ nowMovies, setNowMovies, getMovies }}
     >
       {children}
     </MoviesContext.Provider>

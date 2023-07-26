@@ -4,8 +4,17 @@ import { Feather } from "@expo/vector-icons";
 import theme from "@theme/index";
 import { ScrollView } from "react-native";
 import { SliderItem } from "@components/SliderItem";
+import { useContext, useEffect } from "react";
+import { MoviesContext } from "@contexts/Connection";
+import IMovies from "src/interface/IMovies";
 
 export const Home = () => {
+  const { nowMovies } = useContext(MoviesContext);
+
+  useEffect(() => {
+    console.log('entrou na tela')
+  }, [nowMovies])
+
   return (
     <Container>
       <Header title={"Cine Home"} />
@@ -25,18 +34,18 @@ export const Home = () => {
         <BannerButton activeOpacity={0.9} onPress={() => { }}>
           <Banner
             resizeMethod="resize"
-            source={{ uri: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=725&q=80' }}
+            source={{ uri: '' }}
           />
         </BannerButton>
 
         <SliderMovie
-          data={[1, 2, 3, 4, 5]}
+          data={nowMovies}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <SliderItem />}
+          renderItem={({item}) => <SliderItem data={item}/>}
         />
 
-        <Title>Populares</Title>
+        {/* <Title>Populares</Title>
         <SliderMovie
           data={[1, 2, 3, 4, 5]}
           horizontal={true}
@@ -50,7 +59,7 @@ export const Home = () => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => <SliderItem />}
-        />
+        /> */}
       </ScrollView>
     </Container>
   );

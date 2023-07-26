@@ -2,7 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { Container, BannerItem, Title, RateContainer, Rate } from "./styles";
 import theme from '@theme/index';
 
-export const SliderItem = () => {
+interface ISelectItemProps<ItemT = unknown> {
+  data: ItemT | null | undefined;
+  // title: string;
+  // image: string;
+}
+
+export const SliderItem: React.FC<ISelectItemProps> = ({data}) => {
   return (
     <Container activeOpacity={0.7}>
       <BannerItem

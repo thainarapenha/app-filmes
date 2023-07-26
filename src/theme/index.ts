@@ -13,11 +13,11 @@ export default {
     BOLD: 'Roboto_700Bold'
   },
   FONT_SIZE: {
-    SSM: 12,
-    SM: 14,
-    MD: 16,
-    LG: 18,
-    XL: 24,
-    XXL: 32
+    SSM: '12px',
+    SM: '14px',
+    MD: '16px',
+    LG: '18px',
+    XL: '24px',
+    XXL: '32px'
   }
 };
