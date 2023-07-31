@@ -2,20 +2,20 @@ import { Ionicons } from '@expo/vector-icons';
 import { Container, BannerItem, Title, RateContainer, Rate } from "./styles";
 import theme from '@theme/index';
 
-interface ISelectItemProps<ItemT = unknown> {
-  data: ItemT | null | undefined;
-  // title: string;
-  // image: string;
+type TSelectItem = {
+  image: string,
+  title: string,
+  vote: string,
 }
 
-export const SliderItem: React.FC<ISelectItemProps> = ({data}) => {
+export const SliderItem: React.FC<TSelectItem> = ({ image, title, vote }) => {
   return (
     <Container activeOpacity={0.7}>
       <BannerItem
-        source={{ uri: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=725&q=80' }}
+        source={{ uri: `https://image.tmdb.org/t/p/w500${image}` }}
       />
       <Title numberOfLines={1}>
-        Título do filme
+        {title}
       </Title>
 
       <RateContainer>
@@ -24,7 +24,7 @@ export const SliderItem: React.FC<ISelectItemProps> = ({data}) => {
           size={12}
           color={theme.COLORS.YELLOW}
         />
-        <Rate>9/10</Rate>
+        <Rate>{vote}</Rate>
       </RateContainer>
     </Container>
   );

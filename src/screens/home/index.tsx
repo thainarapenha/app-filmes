@@ -1,18 +1,16 @@
-import { Header } from "@components/Header";
-import { Container, SearchContainer, Input, SearchButton, Title, Banner, BannerButton, SliderMovie } from "./styles";
-import { Feather } from "@expo/vector-icons";
-import theme from "@theme/index";
-import { ScrollView } from "react-native";
-import { SliderItem } from "@components/SliderItem";
 import { useContext, useEffect } from "react";
-import { MoviesContext } from "@contexts/Connection";
-import IMovies from "src/interface/IMovies";
+import { Container, SearchContainer, Input, SearchButton, Title, Banner, BannerButton, SliderMovie, ScrollContainer } from "./styles";
+import { Header } from "@components/Header";
+import { Feather } from "@expo/vector-icons";
+import { FlatList } from "react-native";
+import { SliderItem } from "@components/SliderItem";
+import { MoviesContext } from "@contexts/Movies";
+import theme from "@theme/index";
 
 export const Home = () => {
-  const { nowMovies } = useContext(MoviesContext);
+  const { nowMovies, popularMovies, topMovies } = useContext(MoviesContext);
 
   useEffect(() => {
-    console.log('entrou na tela')
   }, [nowMovies])
 
   return (
@@ -29,38 +27,41 @@ export const Home = () => {
         </SearchButton>
       </SearchContainer>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollContainer >
         <Title>Em cartaz</Title>
-        <BannerButton activeOpacity={0.9} onPress={() => { }}>
+        <BannerButton activeOpacity={0.9} onPress={() => {}}>
           <Banner
             resizeMethod="resize"
-            source={{ uri: '' }}
+            source={{ uri: 'https://image.tmdb.org/t/p/w500/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg'}}
           />
         </BannerButton>
 
-        <SliderMovie
+        <FlatList 
           data={nowMovies}
+          keyExtractor={(item: any) => item.id}
+          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} />}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({item}) => <SliderItem data={item}/>}
         />
 
-        {/* <Title>Populares</Title>
-        <SliderMovie
-          data={[1, 2, 3, 4, 5]}
+        <Title>Populares</Title>
+        <FlatList
+          data={popularMovies}
+          keyExtractor={(item: any) => item.id}
+          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} />}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <SliderItem />}
         />
 
         <Title>Mais votados</Title>
-        <SliderMovie
-          data={[1, 2, 3, 4, 5]}
+        <FlatList
+          data={topMovies}
+          keyExtractor={(item: any) => item.id}
+          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} />}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <SliderItem />}
-        /> */}
-      </ScrollView>
+        />
+      </ScrollContainer>
     </Container>
   );
 }

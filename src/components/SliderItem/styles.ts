@@ -2,8 +2,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.TouchableOpacity`
   width: 140px;
-  height: 180px;
-  padding: 16px 16px 16px 0;
+  padding: 16px 0 16px 16px;
 `;
 export const BannerItem = styled.Image`
   width: 100%;

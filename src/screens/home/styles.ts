@@ -5,6 +5,8 @@ export const Container = styled.SafeAreaView`
   padding: 4px 0;
   background-color: ${({ theme }) => theme.COLORS.BLACK2};
 `;
+export const ScrollContainer = styled.ScrollView`
+`;
 export const SearchContainer = styled.View`
   width: 100%;
   height: 50px;
@@ -35,6 +37,7 @@ export const Title = styled.Text`
   font-family: ${({theme}) => theme.FONT_FAMILY.BOLD};
 `;
 export const BannerButton = styled.TouchableOpacity`
+  margin: 10px 0;
 `;
 export const Banner = styled.Image`
   height: 150px;
