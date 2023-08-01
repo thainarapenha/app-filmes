@@ -19,7 +19,7 @@ export default function App() {
           hidden={true}
           barStyle="light-content"
           backgroundColor="transparent"
-          translucent
+          // translucent
         />
         {fontsLoaded ? <Routes /> : <ActivityIndicator />}
       </ThemeProvider>

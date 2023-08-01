@@ -17,7 +17,7 @@ export const Header: React.FC<IHeaderProps> = ({title}) => {
         <Feather
           name="menu"
           size={30}
-          color={theme.COLORS.YELLOW}
+          color={theme.COLORS.RED}
         />
       </MenuButton>
       <Title>{title}</Title>

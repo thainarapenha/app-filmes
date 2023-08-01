@@ -15,7 +15,7 @@ function DrawerRoutes() {
           backgroundColor: theme.COLORS.BLACK2,
           marginTop: 20,
         },
-        drawerActiveBackgroundColor: theme.COLORS.YELLOW,
+        drawerActiveBackgroundColor: theme.COLORS.RED,
         drawerActiveTintColor: theme.COLORS.WHITE,
         drawerInactiveTintColor: theme.COLORS.WHITE,
       }}

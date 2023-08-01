@@ -1,10 +1,10 @@
 export default {
   COLORS: {
     WHITE: '#FFFFFF',
-    BLACK1: '#000000',
-    BLACK2: '#15120e',
+    BLACK1: '#100F12',
+    BLACK2: '#191A1F',
     GRAY: '#635f61',
-    RED: '#F72f49',
+    RED: '#AC1B1B',
     YELLOW: '#f39510',
   },
   FONT_FAMILY: {

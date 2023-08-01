@@ -18,11 +18,12 @@ export const SearchContainer = styled.View`
 export const Input = styled.TextInput`
   width: 85%;
   height: 50px;
-  border-radius: 8px;
+  border-radius: 16px;
   padding: 8px 15px;
+  border-width: 2px;
+  border-color: ${({ theme }) => theme.COLORS.GRAY};
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-size: ${({ theme }) => theme.FONT_SIZE.SM};
-  background-color: ${({ theme }) => theme.COLORS.GRAY};
 `;
 export const SearchButton = styled.TouchableOpacity`
   width: 15%;
@@ -43,8 +44,4 @@ export const Banner = styled.Image`
   height: 150px;
   border-radius: 8px;
   margin: 0 14px;
-`;
-export const SliderMovie = styled.FlatList`
-  height: 250px;
-  padding: 0 14px;
 `;

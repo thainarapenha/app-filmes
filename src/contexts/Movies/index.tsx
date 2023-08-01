@@ -6,10 +6,13 @@ interface IMoviesContent {
   nowMovies: IMovies[];
   popularMovies: IMovies[];
   topMovies: IMovies[];
+  bannerMovies: IMovies[];
   setNowMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   setPopularMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   setTopMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   getMovies(): Promise<void>;
+  randomBanner(movies: IMovies[]): void;
+  setBannerMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
 }
 
 export const MoviesContext = createContext<IMoviesContent>({} as IMoviesContent);
@@ -23,45 +26,62 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<IMovies[]>([]);
   const [topMovies, setTopMovies] = useState<IMovies[]>([]);
 
+  const [bannerMovies, setBannerMovies] = useState<IMovies[]>([]);
+
   useEffect(() => {
     getMovies();
   }, []);
 
+  function randomBanner(movies: IMovies[]){
+    return Math.floor(Math.random() * movies.length);
+  }
+
   async function getMovies() {
-    const [nowData, popularData, topData] = await Promise.all([
-      api.get('movie/now_playing', {
-        params: {
-          api_key: key,
-          language: 'pt-BR',
-          page: 1,
-        }
-      }),
+    try {
+      const [nowData, popularData, topData] = await Promise.all([
+        api.get('movie/now_playing', {
+          params: {
+            api_key: key,
+            language: 'pt-BR',
+            page: 1,
+          }
+        }),
 
-      api.get('movie/popular', {
-        params: {
-          api_key: key,
-          language: 'pt-BR',
-          page: 1,
-        }
-      }),
+        api.get('movie/popular', {
+          params: {
+            api_key: key,
+            language: 'pt-BR',
+            page: 1,
+          }
+        }),
 
-      api.get('movie/top_rated', {
-        params: {
-          api_key: key,
-          language: 'pt-BR',
-          page: 1,
-        }
-      }),
-    ])
+        api.get('movie/top_rated', {
+          params: {
+            api_key: key,
+            language: 'pt-BR',
+            page: 1,
+          }
+        }),
+      ])
 
-    setNowMovies(nowData.data.results);
-    setPopularMovies(popularData.data.results);
-    setTopMovies(topData.data.results);
+      setNowMovies(nowData.data.results);
+      setPopularMovies(popularData.data.results);
+      setTopMovies(topData.data.results);
+
+      console.log(randomBanner(nowData.data.results))
+      console.log(nowData.data.results[randomBanner(nowData.data.results)])
+
+      setBannerMovies(nowData.data.results[randomBanner(nowData.data.results)]);
+
+    } catch (error) {
+      console.log('Error movies (MoviesContext)', error)
+      alert('Ops :/ \n\nAlgo inesperado aconteceu. Tente novamente');
+    }
   }
 
   return (
     <MoviesContext.Provider
-      value={{ nowMovies, popularMovies, topMovies, setNowMovies, setPopularMovies, setTopMovies, getMovies }}
+      value={{ nowMovies, popularMovies, topMovies, bannerMovies, setBannerMovies, randomBanner, setNowMovies, setPopularMovies, setTopMovies, getMovies }}
     >
       {children}
     </MoviesContext.Provider>
