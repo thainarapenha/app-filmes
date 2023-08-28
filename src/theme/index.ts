@@ -1,8 +1,11 @@
 export default {
   COLORS: {
     WHITE: '#FFFFFF',
-    BLACK: '#000000',
-    RED: '#F75A68',
+    BLACK1: '#100F12',
+    BLACK2: '#191A1F',
+    GRAY: '#635f61',
+    RED: '#AC1B1B',
+    YELLOW: '#f39510',
   },
   FONT_FAMILY: {
     REGULAR: 'Roboto_400Regular',
@@ -10,11 +13,11 @@ export default {
     BOLD: 'Roboto_700Bold'
   },
   FONT_SIZE: {
-    SSM: 12,
-    SM: 14,
-    MD: 16,
-    LG: 18,
-    XL: 24,
-    XXL: 32
+    SSM: '12px',
+    SM: '14px',
+    MD: '16px',
+    LG: '18px',
+    XL: '24px',
+    XXL: '32px'
   }
 };
