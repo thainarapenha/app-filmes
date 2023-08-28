@@ -6,13 +6,13 @@ interface IMoviesContent {
   nowMovies: IMovies[];
   popularMovies: IMovies[];
   topMovies: IMovies[];
-  bannerMovies: IMovies[];
+  bannerMovies: IMovies | undefined;
   setNowMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   setPopularMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   setTopMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   getMovies(): Promise<void>;
   randomBanner(movies: IMovies[]): void;
-  setBannerMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
+  setBannerMovies: React.Dispatch<React.SetStateAction<IMovies | undefined>>;
 }
 
 export const MoviesContext = createContext<IMoviesContent>({} as IMoviesContent);
@@ -25,8 +25,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
   const [nowMovies, setNowMovies] = useState<IMovies[]>([]);
   const [popularMovies, setPopularMovies] = useState<IMovies[]>([]);
   const [topMovies, setTopMovies] = useState<IMovies[]>([]);
-
-  const [bannerMovies, setBannerMovies] = useState<IMovies[]>([]);
+  const [bannerMovies, setBannerMovies] = useState<IMovies>();
 
   useEffect(() => {
     getMovies();
@@ -67,10 +66,6 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
       setNowMovies(nowData.data.results);
       setPopularMovies(popularData.data.results);
       setTopMovies(topData.data.results);
-
-      console.log(randomBanner(nowData.data.results))
-      console.log(nowData.data.results[randomBanner(nowData.data.results)])
-
       setBannerMovies(nowData.data.results[randomBanner(nowData.data.results)]);
 
     } catch (error) {
