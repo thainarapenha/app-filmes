@@ -10,13 +10,13 @@ import IMovies from "src/interface/IMovies";
 import { useNavigation } from "@react-navigation/native";
 
 export const Home = () => {
-  const navigation = useNavigation();
   const { nowMovies, popularMovies, topMovies, bannerMovies } = useContext(MoviesContext);
 
+  const navigation = useNavigation();
   const navigateDetailsPage = (item: IMovies) => {
-    navigation.navigate('details');
+    navigation.navigate('Details', item);
   }
-  
+
   return (
     <Container>
       <Header title={"BOX FILM"} />
@@ -33,7 +33,7 @@ export const Home = () => {
 
       <ScrollContainer >
         <Title>Em cartaz</Title>
-        <BannerButton activeOpacity={0.9} onPress={() => navigateDetailsPage}>
+        <BannerButton activeOpacity={0.9}>
           <Banner
             resizeMethod="resize"
             source={{ uri: `https://image.tmdb.org/t/p/original${bannerMovies?.backdrop_path}` }}
@@ -43,7 +43,7 @@ export const Home = () => {
         <FlatList
           data={nowMovies.slice(0, 5)}
           keyExtractor={(item: any) => item.id}
-          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]}/>}
+          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]} />}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           style={{ marginRight: 16 }}
@@ -53,7 +53,7 @@ export const Home = () => {
         <FlatList
           data={topMovies.slice(0, 5)}
           keyExtractor={(item: any) => item.id}
-          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]}/>}
+          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]} />}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           style={{ marginRight: 16 }}
@@ -63,7 +63,7 @@ export const Home = () => {
         <FlatList
           data={popularMovies.slice(0, 5)}
           keyExtractor={(item: any) => item.id}
-          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]}/>}
+          renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]} />}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           style={{ marginRight: 16 }}
