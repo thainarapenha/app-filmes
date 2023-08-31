@@ -16,10 +16,8 @@ export default function App() {
     <MoviesProvider>
       <ThemeProvider theme={theme} >
         <StatusBar
-          hidden={true}
           barStyle="light-content"
-          backgroundColor="transparent"
-          // translucent
+          backgroundColor={theme.COLORS.BLACK2}
         />
         {fontsLoaded ? <Routes /> : <ActivityIndicator />}
       </ThemeProvider>
