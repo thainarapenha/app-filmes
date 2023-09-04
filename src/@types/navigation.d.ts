@@ -1,8 +1,11 @@
+import IMovies from "src/interface/IMovies";
+
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
-      home: undefined;
-      movies: undefined;
+      Home: undefined;
+      Movies: undefined;
+      Details: IMovies;
     }
   }
 }
