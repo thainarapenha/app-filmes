@@ -3,7 +3,8 @@ import { Roboto_400Regular, Roboto_500Medium, Roboto_700Bold, useFonts } from "@
 import Routes from '@routes/index';
 import theme from '@theme/index';
 import { ActivityIndicator, StatusBar } from "react-native";
-import { MoviesProvider } from '@contexts/Movies';
+import { MoviesProvider } from '@contexts/MoviesContext';
+// import { DetailsProvider } from '@contexts/DetailsContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -14,13 +15,15 @@ export default function App() {
 
   return (
     <MoviesProvider>
-      <ThemeProvider theme={theme} >
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor={theme.COLORS.BLACK2}
-        />
-        {fontsLoaded ? <Routes /> : <ActivityIndicator />}
-      </ThemeProvider>
+      {/* <DetailsProvider> */}
+        <ThemeProvider theme={theme} >
+          <StatusBar
+            barStyle="light-content"
+            backgroundColor={theme.COLORS.BLACK2}
+          />
+          {fontsLoaded ? <Routes /> : <ActivityIndicator />}
+        </ThemeProvider>
+      {/* </DetailsProvider> */}
     </MoviesProvider>
   );
 }

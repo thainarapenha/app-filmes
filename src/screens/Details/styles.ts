@@ -27,8 +27,21 @@ export const Banner = styled.Image`
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 `;
+export const ButtonLink = styled.TouchableOpacity`
+  z-index: 99;
+  width: 64px;
+  height: 64px;
+  top: 320px;
+  left: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32px;
+  position: absolute;
+  background-color: ${({ theme }) => theme.COLORS.RED};
+`;
 export const ContanerInfo = styled.View`
-  margin: 5%;
+  margin: 10% 5% 0 5%;
 `;
 export const StarsContainer = styled.View`
   margin: 5% 0;

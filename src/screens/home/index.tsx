@@ -4,7 +4,7 @@ import { Header } from "@components/Header";
 import { Feather } from "@expo/vector-icons";
 import { FlatList } from "react-native";
 import { SliderItem } from "@components/SliderItem";
-import { MoviesContext } from "@contexts/Movies";
+import { MoviesContext } from "@contexts/MoviesContext";
 import theme from "@theme/index";
 import IMovies from "src/interface/IMovies";
 import { useNavigation } from "@react-navigation/native";

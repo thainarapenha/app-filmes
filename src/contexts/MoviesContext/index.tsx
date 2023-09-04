@@ -10,9 +10,9 @@ interface IMoviesContent {
   setNowMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   setPopularMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
   setTopMovies: React.Dispatch<React.SetStateAction<IMovies[]>>;
+  setBannerMovies: React.Dispatch<React.SetStateAction<IMovies | undefined>>;
   getMovies(): Promise<void>;
   randomBanner(movies: IMovies[]): void;
-  setBannerMovies: React.Dispatch<React.SetStateAction<IMovies | undefined>>;
 }
 
 export const MoviesContext = createContext<IMoviesContent>({} as IMoviesContent);
@@ -38,7 +38,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
   async function getMovies() {
     try {
       const [nowData, popularData, topData] = await Promise.all([
-        api.get('movie/now_playing', {
+        api.get('/now_playing', {
           params: {
             api_key: key,
             language: 'pt-BR',
@@ -46,7 +46,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
           }
         }),
 
-        api.get('movie/popular', {
+        api.get('/popular', {
           params: {
             api_key: key,
             language: 'pt-BR',
@@ -54,7 +54,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
           }
         }),
 
-        api.get('movie/top_rated', {
+        api.get('/top_rated', {
           params: {
             api_key: key,
             language: 'pt-BR',
@@ -73,6 +73,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
       alert('Ops :/ \n\nAlgo inesperado aconteceu. Tente novamente');
     }
   }
+
 
   return (
     <MoviesContext.Provider
