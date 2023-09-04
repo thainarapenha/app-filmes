@@ -51,7 +51,7 @@ export const Home = () => {
 
         <Title>Mais votados</Title>
         <FlatList
-          data={topMovies.slice(0, 5)}
+          data={topMovies.slice(0, 10)}
           keyExtractor={(item: any) => item.id}
           renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]} />}
           horizontal={true}
@@ -61,7 +61,7 @@ export const Home = () => {
 
         <Title>Populares</Title>
         <FlatList
-          data={popularMovies.slice(0, 5)}
+          data={popularMovies}
           keyExtractor={(item: any) => item.id}
           renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]} />}
           horizontal={true}

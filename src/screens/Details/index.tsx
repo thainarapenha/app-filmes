@@ -1,14 +1,15 @@
 import { Container, Header, HeaderButton, Banner, Title, Rate, DescriptionFilm, StarsContainer, ContanerInfo, ButtonLink } from "./styles";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Feather, Ionicons } from "@expo/vector-icons";
-import theme from "@theme/index";
-import Stars from "react-native-stars";
-import IMovies from "src/interface/IMovies";
 import { ScrollView } from "react-native-gesture-handler";
 import { Modal } from "react-native";
 import { useEffect, useState } from "react";
 import { ModalFilm } from "@components/ModalFilm";
 import { api, key } from "@services/api";
+import theme from "@theme/index";
+import Stars from "react-native-stars";
+import IMovies from "src/interface/IMovies";
+import { NotFoundPage } from "@components/NotFoundPage";
 
 interface RouteInitialReading {
   key: string;
@@ -20,10 +21,7 @@ export const Details: React.FC = () => {
   const navigation = useNavigation();
   const route = useRoute<RouteInitialReading>();
 
-  // const { params: { id, title, overview, poster_path, backdrop_path, vote_average, homepage } } = useRoute<RouteInitialReading>();
-
   const [openModal, setOpenModal] = useState<boolean>(false);
-
   const [details, setDetails] = useState<IMovies>();
 
   useEffect(() => {
@@ -33,21 +31,18 @@ export const Details: React.FC = () => {
           params: {
             api_key: key,
             language: 'pt-BR',
-            // page: 1,
           }
         })
-
-        console.log(response.data)
         setDetails(response.data);
 
       } catch (error) {
-        console.log('Error details (DetailsContext)', error)
+        console.log('Error details (Details Page)', error)
         alert('Ops :/ \n\nAlgo inesperado aconteceu. Tente novamente');
       }
     }
     getDetailsMovies();
   }, [])
-  
+
   return (
     <Container>
       <Header>
@@ -98,12 +93,19 @@ export const Details: React.FC = () => {
         <DescriptionFilm>{details?.overview}</DescriptionFilm>
       </ScrollView>
 
-      <Modal animationType="slide" visible={openModal}>
-        <ModalFilm
-          title={details?.title}
-          closeModal={() => setOpenModal(false)}
-          homepage={details?.homepage!}
-        />
+      <Modal animationType="slide" transparent={true} visible={openModal}>
+        {details?.homepage === '' ? (
+          <NotFoundPage
+            title={details?.title}
+            closeModal={() => setOpenModal(false)}
+          />
+        ) :
+          <ModalFilm
+            title={details?.title}
+            closeModal={() => setOpenModal(false)}
+            homepage={details?.homepage!}
+          />
+        }
       </Modal>
     </Container>
   );

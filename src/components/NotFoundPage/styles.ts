@@ -14,8 +14,26 @@ export const ContainerTitle = styled.SafeAreaView`
 `;
 export const CloseModal = styled.TouchableOpacity`
 `;
+export const ContainerNotFound = styled.SafeAreaView`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
+`;
 export const Title = styled.Text`
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.XL};
+`;
+export const TitleNotFound = styled.Text`
+  width: 90%;
+  text-align: center;
+  color: ${({ theme }) => theme.COLORS.RED};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.XL};
+`;
+export const ImageNotFound = styled.Image`
+  width: 90%;
+  height: 300px;
+  margin: 5% 0;
 `;

@@ -1,7 +1,7 @@
-import theme from "@theme/index";
 import { CloseModal, Container, ContainerTitle, Title } from "./styles";
 import { Feather } from "@expo/vector-icons";
 import { WebView } from 'react-native-webview';
+import theme from "@theme/index";
 
 type TModalFilm = {
   title?: string;
@@ -15,7 +15,7 @@ export const ModalFilm: React.FC<TModalFilm> = ({ title, homepage, closeModal })
       <ContainerTitle>
         <Title numberOfLines={1}>{title}</Title>
         <CloseModal onPress={() => closeModal()}>
-          <Feather name="x" size={24} color={theme.COLORS.BLACK1} />
+          <Feather name="x" size={24} color={theme.COLORS.WHITE} />
         </CloseModal>
       </ContainerTitle>
 
