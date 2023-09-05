@@ -5,6 +5,7 @@ interface IMovies {
   poster_path: string;
   backdrop_path: string;
   vote_average: string;
+  homepage: string;
 }
 
 export default IMovies;

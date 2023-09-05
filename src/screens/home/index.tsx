@@ -4,7 +4,7 @@ import { Header } from "@components/Header";
 import { Feather } from "@expo/vector-icons";
 import { FlatList } from "react-native";
 import { SliderItem } from "@components/SliderItem";
-import { MoviesContext } from "@contexts/Movies";
+import { MoviesContext } from "@contexts/MoviesContext";
 import theme from "@theme/index";
 import IMovies from "src/interface/IMovies";
 import { useNavigation } from "@react-navigation/native";
@@ -51,7 +51,7 @@ export const Home = () => {
 
         <Title>Mais votados</Title>
         <FlatList
-          data={topMovies.slice(0, 5)}
+          data={topMovies.slice(0, 10)}
           keyExtractor={(item: any) => item.id}
           renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]} />}
           horizontal={true}
@@ -61,7 +61,7 @@ export const Home = () => {
 
         <Title>Populares</Title>
         <FlatList
-          data={popularMovies.slice(0, 5)}
+          data={popularMovies}
           keyExtractor={(item: any) => item.id}
           renderItem={({ item }) => <SliderItem image={item.poster_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={[]} />}
           horizontal={true}
