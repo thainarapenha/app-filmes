@@ -27,7 +27,7 @@ export const Details: React.FC = () => {
   useEffect(() => {
     async function getDetailsMovies() {
       try {
-        const response = await api.get(`/${route.params.id}`, {
+        const response = await api.get(`/movie/${route.params.id}`, {
           params: {
             api_key: key,
             language: 'pt-BR',
@@ -84,7 +84,7 @@ export const Details: React.FC = () => {
             halfStar={<Ionicons name="md-star-half" size={24} color={theme.COLORS.YELLOW} />}
             desable={true}
           />
-          <Rate>{details?.vote_average}/10</Rate>
+          <Rate>{details?.vote_average.toFixed(1)}/10</Rate>
         </StarsContainer>
       </ContanerInfo>
 

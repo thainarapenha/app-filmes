@@ -7,7 +7,7 @@ type TSelectItem = {
   data: IMovies[],
   image: string,
   title: string,
-  vote: string,
+  vote: number,
   navigatePages(data: IMovies[]): void;
 }
 
@@ -27,7 +27,7 @@ export const SliderItem: React.FC<TSelectItem> = ({ data, image, title, vote, na
           size={12}
           color={theme.COLORS.YELLOW}
         />
-        <Rate>{vote}</Rate>
+        <Rate>{vote.toFixed(1)}/10</Rate>
       </RateContainer>
     </Container>
   );

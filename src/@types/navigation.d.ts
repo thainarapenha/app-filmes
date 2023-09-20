@@ -6,6 +6,7 @@ export declare global {
       Home: undefined;
       Movies: undefined;
       Details: IMovies;
+      Search: string;
     }
   }
 }

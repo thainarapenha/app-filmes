@@ -38,7 +38,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
   async function getMovies() {
     try {
       const [nowData, popularData, topData] = await Promise.all([
-        api.get('/now_playing', {
+        api.get('/movie/now_playing', {
           params: {
             api_key: key,
             language: 'pt-BR',
@@ -46,7 +46,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
           }
         }),
 
-        api.get('/popular', {
+        api.get('/movie/popular', {
           params: {
             api_key: key,
             language: 'pt-BR',
@@ -54,7 +54,7 @@ export const MoviesProvider: React.FC<IMoviesProps> = ({ children }) => {
           }
         }),
 
-        api.get('/top_rated', {
+        api.get('/movie/top_rated', {
           params: {
             api_key: key,
             language: 'pt-BR',

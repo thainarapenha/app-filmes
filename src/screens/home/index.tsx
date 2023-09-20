@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Container, SearchContainer, Input, SearchButton, Title, BannerButton, Banner, ScrollContainer } from "./styles";
 import { Header } from "@components/Header";
 import { Feather } from "@expo/vector-icons";
@@ -10,11 +10,17 @@ import IMovies from "src/interface/IMovies";
 import { useNavigation } from "@react-navigation/native";
 
 export const Home = () => {
+  const navigation = useNavigation();
+  const [input, setInput] = useState<string>('');
   const { nowMovies, popularMovies, topMovies, bannerMovies } = useContext(MoviesContext);
 
-  const navigation = useNavigation();
   const navigateDetailsPage = (item: IMovies) => {
     navigation.navigate('Details', item);
+  }
+
+  const handleSearchMovie = (nameFilm: string) => {
+    navigation.navigate('Search', nameFilm)
+    setInput('');
   }
 
   return (
@@ -25,8 +31,10 @@ export const Home = () => {
         <Input
           placeholder="Digite um filme"
           placeholderTextColor={theme.COLORS.WHITE}
+          value={input}
+          onChangeText={setInput}
         />
-        <SearchButton>
+        <SearchButton onPress={() => {handleSearchMovie(input)}}>
           <Feather name="search" size={30} color={theme.COLORS.WHITE} />
         </SearchButton>
       </SearchContainer>
