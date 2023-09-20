@@ -4,7 +4,7 @@ interface IMovies {
   overview: string;
   poster_path: string;
   backdrop_path: string;
-  vote_average: string;
+  vote_average: number;
   homepage: string;
 }
 

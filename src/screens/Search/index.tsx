@@ -1,8 +1,10 @@
 import IMovies from "src/interface/IMovies";
-import { Container, Title } from "./styles";
+import { Container } from "./styles";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api, key } from "@services/api";
+import { FlatList } from "react-native";
+import { SearchItem } from "@components/SearchItem";
 
 interface RouteInitialReading {
   key: string;
@@ -13,8 +15,11 @@ interface RouteInitialReading {
 export const Search = () => {
   const navigation = useNavigation();
   const route = useRoute<RouteInitialReading>();
+  const [searchMovie, setSearchMovie] = useState<IMovies[]>();
 
-  const [searchMovie, setSearchMovie] = useState<IMovies>();
+  const navigateDetailsPage = (item: IMovies) => {
+    navigation.navigate('Details', item);
+  }
 
   useEffect(() => {
     async function getSearchMovies() {
@@ -27,7 +32,7 @@ export const Search = () => {
             page: 1,
           }
         })
-        setSearchMovie(response.data);
+        setSearchMovie(response.data.results);
 
       } catch (error) {
         console.log('Error Search (Search Page)', error)
@@ -36,10 +41,16 @@ export const Search = () => {
     }
     getSearchMovies();
   }, [])
-  
-  return(
+
+  return (
     <Container>
-      <Title>Sua busca</Title>
+      <FlatList
+        data={searchMovie}
+        keyExtractor={(item: any) => item.id}
+        renderItem={({ item }) => <SearchItem image={item.backdrop_path} title={item.title} vote={item.vote_average} navigatePages={() => navigateDetailsPage(item)} data={item} />}
+        showsHorizontalScrollIndicator={false}
+        style={{ marginRight: 16 }}
+      />
     </Container>
   );
 }
