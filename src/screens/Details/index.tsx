@@ -53,13 +53,6 @@ export const Details: React.FC = () => {
             color={theme.COLORS.WHITE}
           />
         </HeaderButton>
-        <HeaderButton>
-          <Ionicons
-            name="bookmark"
-            size={28}
-            color={theme.COLORS.WHITE}
-          />
-        </HeaderButton>
       </Header>
 
       <Banner
