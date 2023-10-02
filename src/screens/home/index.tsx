@@ -25,7 +25,7 @@ export const Home = () => {
 
   return (
     <Container>
-      <Header title={"BOX FILM"} />
+      <Header title={"App Filmes"} />
 
       <SearchContainer>
         <Input
